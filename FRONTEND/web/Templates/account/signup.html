@@ -1,4 +1,4 @@
-{% extends "account/accountBase.html" %}
+{% extends "base/accountBase.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
  {% load i18n %} 
@@ -6,35 +6,48 @@
  {% trans "Signup" %}
  {% endblock %}
   {% block content %}
-  <div class="container mx-auto py-20 ">
-    <div class="flex flex-col justify-center text-center ">
-      <h1 class="">{% trans "Sign Up" %}</h1>
+  <div class="form-container">
+    <div class="d-flex flex-column justify-content-center align-items-center ">
+      <div class="d-flex flex-column align-items-center">
+        <h1 class="font-extrabold ">{% trans "Sign Up" %}</h1>
 
-      <p>
-        {% blocktrans %}Already have an account? Then please
-        <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-      </p>
+        <p class="text">
+          {% blocktrans %}Already have an account? Then please
+          <a class="url" href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+        </p>
+      </div>
+        
+      <div class="d-flex flex-column justify-content-center align-items-center ">
+        <form 
+          method="post"
+          action="{% url 'account_signup' %}"
+        >
+          {% csrf_token %}
+           {% if form.errors %}
+        <div class="alert alert-warning">
+          <ul class="alert-message">
+            {% for key, value in form.errors.items %}
+              <li>{% if key != '__all__' %}{{ key }} {% endif %}{{ value }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+           {% for field in form %}
+              {{ field }}
+            {% endfor %}
+          {% if redirect_field_value %}
+          <input
+            type="hidden"
+            name="{{ redirect_field_name }}"
+            value="{{ redirect_field_value }}"
+          />
+          {% endif %}
+          <button class="rounded-lg border main2 w-auto h-15 p-2 m-2 mt-5 text-white " type="submit">{% trans "Sign Up" %} &raquo;</button>
+          
+        </form>
+        <div class="">This app is powered by UZO</div>
+      </div>
     </div>
-      
-
-    <form  class="flex justify-center align-items-center"
-      method="post"
-      action="{% url 'account_signup' %}"
-    >
-      {% csrf_token %} 
-      <div class="flex flex-col drop-shadow-lg main1 p-10 w-auto text-white"> 
-       {{form|crispy }}
-       
-      {% if redirect_field_value %}
-      <input
-        type="hidden"
-        name="{{ redirect_field_name }}"
-        value="{{ redirect_field_value }}"
-      />
-      {% endif %}
-      <button class="rounded-lg border main2 w-auto h-15 p-2 m-2 mt-5 text-white " type="submit">{% trans "Sign Up" %} &raquo;</button>
-      </div> 
-    </form>
   </div>
     
 

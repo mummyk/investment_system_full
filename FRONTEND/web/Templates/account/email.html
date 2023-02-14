@@ -1,4 +1,4 @@
-{% extends "account/accountBase.html" %} 
+{% extends "base/accountBase.html" %} 
 {% load static %}
 {% load crispy_forms_tags %}
 
@@ -7,14 +7,15 @@
 {% block head_title %}{% trans "E-mail Addresses" %}{% endblock %}
 
 {% block content %}
-<div class="container mx-auto  py-20 ">
-    <div class="flex flex-col justify-center text-center ">
-    <h1>{% trans "E-mail Addresses" %}</h1>
+<div class="form-container ">
+  <div class="d-flex flex-column justify-content-center align-items-center ">
+    <div class="d-flex flex-column align-items-center">
+      <h1 class="font-extrabold">{% trans "E-mail Addresses" %}</h1>
 {% if user.emailaddress_set.all %}
 <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
     </div>
 
-<form class="flex justify-center" action="{% url 'account_email' %}" class="email_list" method="post">
+<form class="" action="{% url 'account_email' %}" class="email_list" method="post">
 {% csrf_token %}
 <fieldset class="blockLabels">
 
@@ -35,7 +36,7 @@
 </div>
   {% endfor %}
 
-<div class="buttonHolder flex justify-between w-100 pt-2 text-white">
+<div class="buttonHolder ">
       <button class="secondaryAction rounded-lg main1 p-2" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
       <button class="secondaryAction rounded-lg main2 p-2 mx-2" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
       <button class="primaryAction rounded-lg accent2 p-2" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
@@ -50,17 +51,29 @@
 {% endif %}
 
   {% if can_add_email %}
-  <div class="flex flex-col justify-center text-center pt-4">
+  <div class="pt-4">
     <h2>{% trans "Add E-mail Address" %}</h2>
   </div>
-    <form class="flex justify-center" method="post" action="{% url 'account_email' %}" class="add_email">
+    <form class="" method="post" action="{% url 'account_email' %}" class="add_email">
         {% csrf_token %}
-        <div class="flex flex-col drop-shadow-lg main1 p-10 text-white">
-        {{ form|crispy }}
-        <button class="rounded-lg border main2 w-44 h-15 p-2 m-2 mt-3 text-white" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+         {% if form.errors %}
+        <div class="alert alert-warning">
+          <ul class="alert-message">
+            {% for key, value in form.errors.items %}
+              <li>{% if key != '__all__' %}{{ key }} {% endif %}{{ value }}</li>
+            {% endfor %}
+          </ul>
         </div>
+        {% endif %}
+           {% for field in form %}
+              {{ field }}
+            {% endfor %}
+        <button class="" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
     </form>
   {% endif %}
+   <div class="">This app is powered by UZO</div>
+      </div>
+    </div>
   </div>
 
 {% endblock %}

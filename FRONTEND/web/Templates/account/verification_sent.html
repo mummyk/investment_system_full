@@ -1,15 +1,15 @@
-{% extends "account/accountBase.html" %} 
+{% extends "base/accountBase.html" %} 
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
 {% block content %}
-<div class="container mx-auto px-4 p-20 flex flex-col justify-center text-main-2 align-items-center">
-    <h1 class="pt-20">{% trans "Verify Your E-mail Address" %}</h1>
+<div class="form-container flex-column">
+    <h1>{% trans "Verify Your E-mail Address" %}</h1>
 
-    <p class="font-medium">{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification e-mail in your main inbox, check your spam folder. Please contact us if you do not receive the verification e-mail within a few minutes.{% endblocktrans %}</p>
-
+    <p class="ms-5 ">{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification e-mail in your main inbox, check your spam folder. Please contact us if you do not receive the verification e-mail within a few minutes.{% endblocktrans %}</p>
+<div class="m-5">This app is powered by UZO</div>
 </div>
 
 {% endblock %}

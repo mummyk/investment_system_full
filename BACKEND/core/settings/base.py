@@ -58,9 +58,13 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     # third party apps
+    'crispy_forms',
+    "crispy_tailwind",
     "debug_toolbar",
     'dj_rest_auth',
     "django_htmx",
+    'tailwind',
+    'theme',
 
     # allauth apps
     'allauth',
@@ -201,18 +205,6 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_SIGNUP_FORM_CLASS = 'client.forms.SignupForm'
 
 
-# Email configuration for authentication
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_HOST_USER = 'your-username@gmail.com'
-    EMAIL_HOST_PASSWORD = 'your-password'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
-
-
 # Django-rest-auth setting
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'core-app-auth'
@@ -243,3 +235,10 @@ REST_FRAMEWORK = {
 
 # Async config
 ASGI_APPLICATION = "core.asgi.application"
+
+# tailwind settings
+TAILWIND_APP_NAME = 'theme'
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+
+# Crispy-form setting
+CRISPY_TEMPLATE_PACK = "bootstrap"

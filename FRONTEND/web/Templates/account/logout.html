@@ -1,4 +1,4 @@
-{% extends "account/accountBase.html" %} 
+{% extends "base/accountBase.html" %} 
 {% load static %}
 
 {% load i18n %}
@@ -20,7 +20,7 @@
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
   {% endif %}
   <div class="flex justify-center text-center">
-  <a href="{% url 'dashboard' %}"class=" no-underline text-white rounded-lg border bg-green-500 w-44 h-15 p-2 m-2 mt-5 text-white hover:bg-green-600 ">Go Back</a>
+  <a href=""class=" no-underline text-white rounded-lg border bg-green-500 w-44 h-15 p-2 m-2 mt-5 text-white hover:bg-green-600 ">Go Back</a>
   <button  class="rounded-lg border border-main-2 bg-red-500 w-44 h-15 p-2 m-2 mt-5 text-white hover:bg-red-600 " type="submit">{% trans 'Sign Out' %}</button>
 </div>
 </div>
