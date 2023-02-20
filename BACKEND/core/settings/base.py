@@ -58,13 +58,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     # third party apps
-    'crispy_forms',
-    "crispy_tailwind",
     "debug_toolbar",
     'dj_rest_auth',
     "django_htmx",
-    'tailwind',
-    'theme',
 
     # allauth apps
     'allauth',
@@ -75,6 +71,11 @@ INSTALLED_APPS = [
     # My apps
     'client',
     'referrals',
+    'api',
+    'investments',
+    'home',
+    'payments',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -211,7 +212,7 @@ JWT_AUTH_COOKIE = 'core-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'core-refresh-token'
 
 REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'client.serializers.CustomSignupSerializer',
+    'REGISTER_SERIALIZER': 'api.serializers.CustomSignupSerializer',
 }
 
 
@@ -235,10 +236,3 @@ REST_FRAMEWORK = {
 
 # Async config
 ASGI_APPLICATION = "core.asgi.application"
-
-# tailwind settings
-TAILWIND_APP_NAME = 'theme'
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
-
-# Crispy-form setting
-CRISPY_TEMPLATE_PACK = "bootstrap"

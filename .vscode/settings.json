@@ -5,6 +5,7 @@
       "authtoken",
       "dotenv",
       "htmx",
+      "pinax",
       "socialaccount"
    ]
 }

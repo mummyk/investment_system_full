@@ -19,19 +19,19 @@ class SignupForm(forms.Form):
 
 class ClientInfoForm(forms.ModelForm):
     date_of_birth = forms.DateField(label="", widget=forms.DateTimeInput(attrs={
-        'type': "date", 'class': "title flex-1 w-full p-4 my-4 bg-white rounded-xl datepicker"
+        'type': "date", 'class': "form datepicker"
     }))
     gender = forms.ChoiceField(choices=UserInfoModel.GENDER_CHOICE,
-                               label="", widget=forms.Select(attrs={'class': 'title flex-1 w-full p-4 my-4 bg-white rounded-xl', 'placeholder': 'Select Gender'}))
+                               label="", widget=forms.Select(attrs={'class': 'form', 'placeholder': 'Select Gender'}))
     phone_number = forms.CharField(label="", widget=forms.TextInput(
-        attrs={'class': 'title flex-1 w-full p-4 my-4 bg-white rounded-xl', 'placeholder': 'Enter phone number'}))
+        attrs={'class': 'form', 'placeholder': 'Enter phone number'}))
     address = forms.CharField(label="", widget=forms.TextInput(
-        attrs={'class': 'title flex-1 w-full p-4 my-4 bg-white rounded-xl', 'placeholder': 'Enter address'}))
+        attrs={'class': 'form', 'placeholder': 'Enter address'}))
     state = forms.CharField(label="", widget=forms.TextInput(
-        attrs={'class': 'title flex-1 w-full p-4 my-4 bg-white rounded-xl', 'placeholder': 'Enter your state'}))
+        attrs={'class': 'form', 'placeholder': 'Enter your state'}))
 
     city = forms.CharField(label="", widget=forms.TextInput(
-        attrs={'class': 'title flex-1 w-full p-4 my-4 bg-white rounded-xl', 'placeholder': 'Enter Your city'}))
+        attrs={'class': 'form', 'placeholder': 'Enter Your city'}))
 
     class Meta:
         model = UserInfoModel
