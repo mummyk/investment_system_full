@@ -9,6 +9,7 @@ from django.utils.translation import gettext as _
 
 class UserInfoModel(models.Model):
     GENDER_CHOICE = (
+        ("0", _("Select your gender")),
         ("1", _("Male")),
         ("2", _("Female")),
         ("3", _("Others")),

@@ -1,5 +1,6 @@
 from django import forms
 from .models import UserInfoModel
+from django_countries.widgets import CountrySelectWidget
 from django.utils.translation import gettext as _
 
 
@@ -18,11 +19,10 @@ class SignupForm(forms.Form):
 
 
 class ClientInfoForm(forms.ModelForm):
-    date_of_birth = forms.DateField(label="", widget=forms.DateTimeInput(attrs={
-        'type': "date", 'class': "form datepicker"
-    }))
+    date_of_birth = forms.DateField(label="", widget=forms.DateTimeInput(attrs={'placeholder': 'Select Your date of birth', 'type': 'text', 'onfocus': "(this.type='date')", 'class': "datepicker p-2",
+                                                                                }))
     gender = forms.ChoiceField(choices=UserInfoModel.GENDER_CHOICE,
-                               label="", widget=forms.Select(attrs={'class': 'form', 'placeholder': 'Select Gender'}))
+                               label="", widget=forms.Select(attrs={'class': 'bootstrap-select p-2', 'placeholder': 'Select Gender'}))
     phone_number = forms.CharField(label="", widget=forms.TextInput(
         attrs={'class': 'form', 'placeholder': 'Enter phone number'}))
     address = forms.CharField(label="", widget=forms.TextInput(
@@ -35,11 +35,9 @@ class ClientInfoForm(forms.ModelForm):
 
     class Meta:
         model = UserInfoModel
-        fields = ['phone_number', 'date_of_birth',
+        fields = ['date_of_birth', 'phone_number',
                   'gender', 'address', 'country', 'state', 'city']
-        widgets = {
-            'country': forms.Select(attrs={'class': 'title flex-1 w-full p-4 my-4 bg-white rounded-xl'})
-        }
+        widgets = {'country': CountrySelectWidget(attrs={'class': 'p-2'})}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

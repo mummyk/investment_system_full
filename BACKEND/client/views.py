@@ -62,18 +62,21 @@ def create_profile(request):
 
 @ login_required
 def edit(request):
+    if UserInfoModel.objects.filter(user=request.user).exists():
+        if request.method == 'POST':
+            profile_form = ClientInfoForm(
+                request.POST, request.FILES, instance=request.user.profile)
 
-    if request.method == 'POST':
-        profile_form = ClientInfoForm(
-            request.POST, request.FILES, instance=request.user.profile)
+            if profile_form.is_valid():
+                profile_form.save()
+                messages.success(
+                    request, 'Your profile is updated successfully')
+                return redirect(to='/client/profiles')
+        profile = UserInfoModel.objects.get(user=request.user)
+        profile_form = ClientInfoForm(instance=profile)
 
-        if profile_form.is_valid():
-            profile_form.save()
-            messages.success(request, 'Your profile is updated successfully')
-            return redirect(to='/client/profiles')
+        context = {'title': 'Edit', 'form': profile_form,
+                   'prof': profiles}
     else:
-        profile_form = ClientInfoForm(instance=request.user.profile)
-
-    context = {'title': 'Edit', 'form': profile_form,
-               'prof': profiles}
+        return redirect('/client/create_profile')
     return render(request, 'client/edit_profile.html', context)

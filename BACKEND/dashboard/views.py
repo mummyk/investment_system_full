@@ -107,25 +107,16 @@ def dashboard(request):
     else:
         bonus = 0
 
-    # chart data config
-    labels = []
-    data = []
-    for p in profits:
-        date = p.created
-        day_of_week = date.strftime("%A")
-        labels.append(day_of_week)
-        data.append(p.amount)
-
     if profiles.exists():
 
         context = {'title': 'Dashboard',
                    'dashboard': True, 'deposit': total_deposit['amount__sum'], 'withdraw': total_withdraw['amount__sum'],
                    'balance': get_balance(request), 'bonus': bonus, 'daily_profit': daily_profit,
-                   'total_profit': user_total_profit['amount__sum'], 'growth': daily_profit_percent, 'label': labels, 'data': data,
+                   'total_profit': user_total_profit['amount__sum'], 'growth': daily_profit_percent,
                    }
     else:
-        return redirect('/create_profile')
-    return render(request, 'dashboard.html', context)
+        return redirect('client/create_profile')
+    return render(request, 'dashboard/dash_home.html', context)
 
 
 def notification(request):

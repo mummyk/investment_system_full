@@ -8,6 +8,3 @@ EMAIL_HOST_PASSWORD = 'your-password'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-
-# Pinax referral system
-PINAX_REFERRALS_SECURE_URLS = True

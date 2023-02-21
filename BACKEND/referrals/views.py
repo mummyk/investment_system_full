@@ -128,3 +128,12 @@ def ref_deposit(db, val):
                 amount = amount * 0.05
                 amount = round(amount, 2)
     return {'amount': amount, 'person': person}
+
+
+# referral number of downlink
+def downlink(number_of_downlink=3):
+    if ReferralModel.object.all().exists():
+        ref = ReferralModel.objects.all()
+        ref_downlink = number_of_downlink
+        return ref_downlink
+    
